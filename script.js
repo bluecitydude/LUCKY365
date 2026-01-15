@@ -47,6 +47,14 @@ const hackathonTeams = [
         description: "AI-based personal habit building and productivity improvement assistant.",
         icon: "💪", // Habit building/personal growth icon
         link: "https://habitbreakers.lovable.app"
+    },
+    {
+        teamName: "AI Marauders",
+        members: "Garvita Goyal, Dimpal Sharma, Arbaz Khan, Palak Dharival",
+        projectName: "Result Management System",
+        description: "Comprehensive platform for managing academic results, transcripts, and student performance tracking.",
+        icon: "📊", // Result/data management icon
+        link: "https://faculty-fluence-suite.lovable.app"
     }
 ];
 
