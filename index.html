@@ -15,11 +15,31 @@
 
 <body>
 
+    <!-- Tech Splash Screen -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <div class="splash-logo-glitch" data-text="LUCKY365">LUCKY365</div>
+            <div class="splash-loading-text">INITIALIZING CORE SYSTEMS...</div>
+            <div class="splash-progress-container">
+                <div class="splash-progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation Header with Logo -->
     <nav class="nav-header">
         <div class="header-content">
             <img src="lips__1_-removebg-preview.png" alt="Lucky365 Logo" class="header-logo">
             <h1 class="header-title">Lucky365</h1>
+
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
+                <span class="toggle-track">
+                    <span class="toggle-indicator">
+                        <span class="check-icon">☀</span>
+                        <span class="check-icon">☾</span>
+                    </span>
+                </span>
+            </button>
         </div>
     </nav>
 
@@ -34,8 +54,8 @@
                 <span class="tech-icon">🏆</span> Hackathon Top Teams
             </h1>
             <div class="subtitle-container">
-                <p class="bio-scan">SYSTEM_CHECK: <span class="highlight-text">Showcasing the next generation of digital
-                        innovation</span><span class="cursor">_</span></p>
+                <p class="bio-scan">LUCKY365:$ <span class="highlight-text" id="typing-text"></span><span
+                        class="cursor">_</span></p>
             </div>
         </div>
     </header>
@@ -85,6 +105,10 @@
             <p>&copy; 2026 Lucky365 Hackathon Showcase. Powered by student innovation.</p>
         </div>
     </footer>
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="click-effects-container"></div>
 </body>
 
 </html>
