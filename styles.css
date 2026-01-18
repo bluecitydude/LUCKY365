@@ -4,69 +4,136 @@
    ======================================== */
 
 :root {
-    /* Techie Theme Palette */
+    /* Cyber Security Danger Palette */
+    --primary: #ef4444;
+    /* Danger Red */
+    --primary-light: #f87171;
+    /* Warning Red */
+    --primary-glow: rgba(239, 68, 68, 0.6);
+
+    --secondary: #b91c1c;
+    /* Deep Red/Blood */
+    --secondary-light: #dc2626;
+    --secondary-glow: rgba(220, 38, 38, 0.5);
+
+    --accent: #f59e0b;
+    /* Alert Amber */
+    --accent-glow: rgba(245, 158, 11, 0.5);
+
+    /* Dark Mode Foundations - Hacker Black */
+    --dark-bg: #000000;
+    --surface-bg: #0a0a0a;
+    --card-bg: rgba(20, 0, 0, 0.85);
+    /* Dark Red Tint */
+    --border-color: rgba(239, 68, 68, 0.3);
+
+    /* Typography */
+    --font-heading: 'Courier New', monospace;
+    /* Hacking Font */
+    --font-body: 'Consolas', monospace;
+
+    --text-light: #ffffff;
+    /* Pure White for max contrast */
+    --text-dim: #fca5a5;
+    /* Lighter Red for readability on black */
+    /* Dark Red Text for dim */
+    --header-text: #ffffff;
+    --footer-bg: #110000;
+    --banner-bg: rgba(50, 0, 0, 0.9);
+}
+
+/* Light Mode Variables Override - "Clean Room" breached */
+[data-theme="light"] {
+    --dark-bg: #fff1f2;
+    --surface-bg: #ffe4e6;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --border-color: rgba(220, 38, 38, 0.4);
+
+    --text-light: #450a0a;
+    --text-dim: #7f1d1d;
+    --header-text: #7f1d1d;
+
+    --primary: #dc2626;
+    --primary-light: #ef4444;
+    --primary-glow: rgba(220, 38, 38, 0.3);
+
+    --footer-bg: #fff5f5;
+    --banner-bg: rgba(255, 200, 200, 0.9);
+}
+
+/* Matrix Theme - Digital Rain */
+[data-theme="matrix"] {
+    --dark-bg: #000000;
+    --surface-bg: #020a02;
+    --card-bg: rgba(0, 20, 0, 0.9);
+    --border-color: rgba(0, 255, 65, 0.3);
+
+    --primary: #00ff41;
+    /* Matrix Green */
+    --primary-light: #50ff7f;
+    --primary-glow: rgba(0, 255, 65, 0.6);
+
+    --secondary: #008f11;
+    /* Darker Green */
+    --secondary-light: #00b818;
+    --secondary-glow: rgba(0, 143, 17, 0.5);
+
+    --accent: #d1ffdb;
+    /* White-Green */
+    --accent-glow: rgba(209, 255, 219, 0.5);
+
+    --text-light: #ffffff;
+    --text-dim: #4ade80;
+    /* Bright Green for contrast */
+    --header-text: #00ff41;
+    --footer-bg: #001100;
+    --banner-bg: rgba(0, 50, 0, 0.9);
+
+    --font-heading: 'Courier New', monospace;
+    --font-body: 'Courier New', monospace;
+}
+
+/* Cyber Theme - Future Blue */
+[data-theme="cyber"] {
+    --dark-bg: #020617;
+    --surface-bg: #0f172a;
+    --card-bg: rgba(15, 23, 42, 0.7);
+    --border-color: rgba(56, 189, 248, 0.3);
+
     --primary: #0ea5e9;
-    /* Vivid Cyan */
+    /* Cyan */
     --primary-light: #38bdf8;
-    /* Light Cyan */
-    --primary-glow: rgba(14, 165, 233, 0.5);
+    --primary-glow: rgba(14, 165, 233, 0.6);
 
     --secondary: #6366f1;
-    /* Electric Indigo */
+    /* Indigo */
     --secondary-light: #818cf8;
     --secondary-glow: rgba(99, 102, 241, 0.5);
 
     --accent: #10b981;
-    /* Emerald/Neon Green */
+    /* Emerald */
     --accent-glow: rgba(16, 185, 129, 0.5);
-
-    /* Dark Mode Foundations */
-    --dark-bg: #020617;
-    /* Deepest Slate/Black */
-    --surface-bg: #0f172a;
-    /* Lighter Slate */
-    --card-bg: rgba(15, 23, 42, 0.6);
-    --border-color: rgba(56, 189, 248, 0.1);
-
-    /* Typography */
-    --font-heading: 'Space Grotesk', sans-serif;
-    --font-body: 'Outfit', sans-serif;
 
     --text-light: #f1f5f9;
     --text-dim: #94a3b8;
     --header-text: #ffffff;
     --footer-bg: #020617;
-    --banner-bg: rgba(15, 23, 42, 0.8);
+    --banner-bg: rgba(15, 23, 42, 0.9);
+
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Outfit', sans-serif;
 }
 
-/* Light Mode Variables Override - Cyberpunk Lab Theme */
-[data-theme="light"] {
-    --dark-bg: #f0f4f8;
-    /* High-tech Lab White */
-    --surface-bg: #ffffff;
-    /* Pure White Surface */
-    --card-bg: rgba(255, 255, 255, 0.9);
-    --border-color: rgba(14, 165, 233, 0.4);
-    /* Stronger Cyan Border */
+/* Developers Footer Link Style */
+.developers-list a {
+    color: var(--primary-light);
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
 
-    --text-light: #1e293b;
-    /* Dark Slate Text */
-    --text-dim: #475569;
-    /* Slate Grey */
-    --header-text: #0f172a;
-    /* Deep Navy Header */
-
-    --primary: #0284c7;
-    /* Darker Cyan for visibility */
-    --primary-light: #0ea5e9;
-    /* Vivid Cyan */
-    --primary-glow: rgba(14, 165, 233, 0.4);
-    /* Stronger glow for light mode */
-    --secondary-glow: rgba(99, 102, 241, 0.3);
-
-    --footer-bg: #e2e8f0;
-    /* Light Grey Footer */
-    --banner-bg: rgba(255, 255, 255, 0.9);
+.developers-list a:hover {
+    color: var(--primary);
+    text-shadow: 0 0 10px var(--primary);
 }
 
 /* Global reset */
@@ -74,53 +141,70 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: none !important;
+    /* Force override for all */
 }
 
-/* Body - Active Tech Grid Background */
+/* Body - Danger Wave Background */
 body {
     font-family: var(--font-body);
     background-color: var(--dark-bg);
     background-image:
-        linear-gradient(rgba(14, 165, 233, 0.15) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(14, 165, 233, 0.15) 1px, transparent 1px);
-    background-size: 50px 50px;
-    background-position: center;
+        radial-gradient(circle at 50% 50%, rgba(20, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%),
+        repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255, 0, 0, 0.05) 1px, rgba(255, 0, 0, 0.05) 2px);
+    background-size: 100% 100%, 100% 4px;
     color: var(--text-light);
     min-height: 100vh;
     line-height: 1.6;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    animation: grid-move 20s linear infinite;
-    transition: background-color 0.5s ease, color 0.5s ease;
+    animation: danger-pulse 4s infinite;
 }
 
-/* Ambient Glow Centers */
+@keyframes danger-pulse {
+
+    0%,
+    100% {
+        box-shadow: inset 0 0 50px rgba(255, 0, 0, 0.1);
+    }
+
+    50% {
+        box-shadow: inset 0 0 100px rgba(255, 0, 0, 0.3);
+    }
+}
+
+/* Skull Background Effect */
 body::before {
-    content: '';
+    content: '☠';
     position: fixed;
-    top: -30%;
-    left: -10%;
-    width: 60%;
-    height: 60%;
-    background: radial-gradient(circle, var(--secondary-glow) 0%, transparent 70%);
-    filter: blur(80px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80vh;
+    opacity: 0.03;
+    /* Very subtle */
+    color: var(--primary);
     z-index: -1;
-    opacity: 0.4;
+    pointer-events: none;
+    animation: pulse-skull 5s infinite ease-in-out;
 }
 
-body::after {
-    content: '';
-    position: fixed;
-    bottom: -20%;
-    right: -10%;
-    width: 60%;
-    height: 60%;
-    background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
-    filter: blur(80px);
-    z-index: -1;
-    opacity: 0.4;
+@keyframes pulse-skull {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.03;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+        opacity: 0.06;
+    }
 }
+
+
 
 /* Banner - Tech alert style */
 /* Banner - Tech alert style */
@@ -162,15 +246,13 @@ body::after {
 
 /* Main navigation header */
 .nav-header {
-    background: var(--surface-bg);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 4px 30px rgba(14, 165, 233, 0.1);
+    background: #000;
+    border-bottom: 2px solid var(--primary);
+    box-shadow: 0 5px 20px rgba(255, 0, 0, 0.2);
     padding: 1rem 2rem;
     position: sticky;
     top: 0;
     z-index: 500;
-    transition: background 0.5s ease;
 }
 
 /* Header container with logo and title */
@@ -187,7 +269,7 @@ body::after {
 .header-logo {
     height: 45px;
     width: auto;
-    filter: drop-shadow(0 0 8px var(--primary-glow));
+    filter: drop-shadow(0 0 5px var(--primary));
     transition: filter 0.3s ease;
 }
 
@@ -200,17 +282,14 @@ body::after {
     font-size: 1.8rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--text-light);
-    text-shadow: 0 0 10px var(--primary-glow);
-    background: none;
-    -webkit-text-fill-color: initial;
+    letter-spacing: 5px;
+    color: var(--primary);
+    text-shadow: 2px 2px 0px #000, 0 0 10px var(--primary);
     margin: 0;
     margin-right: auto;
-    /* Push toggle to right */
 }
 
-/* Theme Toggle Button - Futuristic Switch */
+/* Theme Toggle Button - Red Switch */
 .theme-toggle {
     background: transparent;
     border: none;
@@ -218,23 +297,22 @@ body::after {
     padding: 0;
     outline: none;
     margin-left: 2rem;
-    /* Ensure spacing */
 }
 
 .toggle-track {
     display: block;
     width: 60px;
     height: 30px;
-    background: rgba(15, 23, 42, 0.5);
-    border: 1px solid var(--primary-light);
-    border-radius: 30px;
+    background: #200;
+    border: 2px solid var(--primary);
+    border-radius: 4px;
+    /* More angular/tech */
     position: relative;
     transition: all 0.3s ease;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 [data-theme="light"] .toggle-track {
-    background: rgba(255, 255, 255, 0.5);
+    background: #fcc;
     border-color: var(--secondary);
 }
 
@@ -242,17 +320,18 @@ body::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
     background: var(--primary);
-    border-radius: 50%;
+    border-radius: 2px;
+    /* Square */
     position: absolute;
     top: 1px;
     left: 2px;
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    box-shadow: 0 0 10px var(--primary);
-    color: #fff;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: #000;
     font-size: 14px;
+    font-weight: bold;
 }
 
 [data-theme="light"] .toggle-indicator {
@@ -295,96 +374,71 @@ header {
 }
 
 /* Main title with Glitch Effect */
+
+/* Main title with Glitch - Danger Style */
 .glitch {
     font-family: var(--font-heading);
     font-size: 4.5rem;
     font-weight: 800;
-    color: var(--header-text);
+    color: var(--primary);
     position: relative;
     margin-bottom: 2rem;
     text-transform: uppercase;
-    letter-spacing: -2px;
-    text-shadow: 0 0 10px var(--primary-glow);
+    letter-spacing: 0px;
+    text-shadow: 4px 4px 0 #000, 0 0 20px var(--primary);
     animation: fadeInDown 1s ease-out;
     transition: color 0.5s ease;
 }
 
-.glitch::before,
-.glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
 .glitch::before {
     left: 2px;
-    text-shadow: -2px 0 #ff00c1;
+    text-shadow: -2px 0 #000;
     clip: rect(44px, 450px, 56px, 0);
-    animation: glitch-anim 5s infinite linear alternate-reverse;
+    background-color: var(--primary-light);
+    color: #000;
+    animation: glitch-anim 2s infinite linear alternate-reverse;
 }
 
 .glitch::after {
     left: -2px;
-    text-shadow: -2px 0 #00fff9;
+    text-shadow: -2px 0 #fff;
     clip: rect(44px, 450px, 56px, 0);
-    animation: glitch-anim2 1s infinite linear alternate-reverse;
+    animation: glitch-anim2 0.5s infinite linear alternate-reverse;
 }
 
-.tech-icon {
-    display: inline-block;
-    filter: drop-shadow(0 0 15px var(--accent));
-    animation: pulse-glow 2s infinite ease-in-out;
-}
-
-/* Subtitle Container - Terminal Style */
+/* Subtitle Container - Terminal Warning */
 .subtitle-container {
     max-width: 750px;
     margin: 0 auto;
-    background: var(--surface-bg);
-    border: 1px solid var(--border-color);
-    box-shadow: 0 0 30px rgba(56, 189, 248, 0.1);
-    border-radius: 4px;
+    background: rgba(20, 0, 0, 0.9);
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    border-radius: 0;
     padding: 1rem 1.5rem;
     position: relative;
     overflow: hidden;
-    backdrop-filter: blur(5px);
-    transition: background 0.5s ease;
     min-height: 80px;
     display: flex;
     align-items: center;
 }
 
 .subtitle-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 3px;
-    height: 100%;
-    background: var(--primary-light);
-    box-shadow: 0 0 10px var(--primary-light);
+    display: none;
+    /* remove line */
 }
 
-/* Bio/Terminal Text */
 .bio-scan {
     font-family: 'Courier New', monospace;
     font-size: 1.1rem;
     color: var(--primary-light);
-    text-align: left;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    flex-wrap: wrap;
-    line-height: 1.6;
+    text-shadow: 0 0 5px var(--primary);
 }
 
 .highlight-text {
-    color: var(--text-light);
-    text-shadow: 0 0 8px var(--primary-glow);
-    font-weight: 600;
+    color: #fff;
+    background-color: var(--secondary);
+    padding: 2px 5px;
+    font-weight: bold;
 }
 
 /* Typing Cursor */
@@ -699,6 +753,7 @@ header {
     line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 4;
+    line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     margin-bottom: 0.5rem;
@@ -1223,28 +1278,27 @@ a {
     transition: transform 0.2s ease;
 }
 
-/* Cursor Dot (Center Target) */
+/* Cursor Dot (Center Target - skull feel) */
 .cursor-dot {
-    width: 6px;
-    height: 6px;
-    background-color: var(--primary-light);
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    /* Diamond shape */
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary);
+    clip-path: circle(50%);
     position: fixed;
     top: 0;
     left: 0;
     transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 9999;
-    box-shadow: 0 0 10px var(--primary-light);
+    box-shadow: 0 0 10px var(--primary);
     transition: background-color 0.3s ease;
 }
 
-/* Cursor Outline (Tech HUD Ring) */
+/* Cursor Outline (Danger Zone) */
 .cursor-outline {
-    width: 40px;
-    height: 40px;
-    border: 1px dashed var(--primary-light);
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--primary);
     border-radius: 50%;
     position: fixed;
     top: 0;
@@ -1252,36 +1306,27 @@ a {
     transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 9998;
-    background: transparent;
-    animation: tech-spin 8s linear infinite;
-    mix-blend-mode: exclusion;
+    background: rgba(255, 0, 0, 0.05);
+    animation: danger-spin 4s linear infinite;
+    border-left-color: transparent;
+    border-right-color: transparent;
 }
 
 /* Tech Brackets on Outline */
-.cursor-outline::before,
-.cursor-outline::after {
-    content: '';
+.cursor-outline::before {
+    content: '⚠';
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 2px solid transparent;
-    border-top-color: var(--primary);
-    border-bottom-color: var(--primary);
-    transform: translate(-50%, -50%) rotate(45deg);
-    animation: tech-pulse 2s ease-in-out infinite;
+    transform: translate(-50%, -60%);
+    /* Center icon */
+    font-size: 10px;
+    color: var(--primary);
+    animation: opacity-pulse 1s infinite alternate;
 }
 
 .cursor-outline::after {
-    width: 60%;
-    height: 60%;
-    border-left-color: var(--secondary);
-    border-right-color: var(--secondary);
-    border-top-color: transparent;
-    border-bottom-color: transparent;
-    animation: tech-counter-spin 4s linear infinite;
+    display: none;
 }
 
 /* Hover State - Locked On Target */
@@ -1379,6 +1424,33 @@ body.hovering .cursor-outline::after {
     }
 }
 
+@keyframes danger-spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+        border-width: 2px;
+    }
+
+    50% {
+        border-width: 5px;
+        border-color: var(--secondary);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+        border-width: 2px;
+    }
+}
+
+@keyframes opacity-pulse {
+    0% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 /* Click Ripple Effect */
 .click-ripple {
     position: fixed;
@@ -1430,6 +1502,10 @@ body.hovering .cursor-outline::after {
     }
 }
 
+
+/* Closing potentially unclosed block from previous edit errors */
+
+
 /* ========================================
    SPLASH SCREEN
    ======================================== */
@@ -1440,14 +1516,15 @@ body.hovering .cursor-outline::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #020617;
-    /* Deep Slate/Black */
+    background-color: #000;
+    /* Absolute Black */
     z-index: 10000;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    background-image: repeating-linear-gradient(rgba(255, 0, 0, 0.1) 0, rgba(255, 0, 0, 0.1) 1px, transparent 1px, transparent 4px);
 }
 
 #splash-screen.fade-out {
@@ -1462,14 +1539,14 @@ body.hovering .cursor-outline::after {
 }
 
 .splash-logo-glitch {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Courier New', monospace;
     font-size: 5rem;
     font-weight: 800;
-    color: #fff;
+    color: var(--primary);
     letter-spacing: 5px;
     margin-bottom: 2rem;
     position: relative;
-    text-shadow: 0 0 20px rgba(14, 165, 233, 0.6);
+    text-shadow: 3px 3px 0 #500;
 }
 
 .splash-logo-glitch::before,
@@ -1501,10 +1578,11 @@ body.hovering .cursor-outline::after {
     font-family: 'Courier New', monospace;
     font-size: 1rem;
     color: var(--primary-light);
-    letter-spacing: 2px;
+    letter-spacing: 4px;
     margin-bottom: 1rem;
     text-transform: uppercase;
     animation: blink 0.5s step-end infinite alternate;
+    font-weight: bold;
 }
 
 .splash-progress-container {
@@ -1520,8 +1598,8 @@ body.hovering .cursor-outline::after {
 .splash-progress-bar {
     width: 0%;
     height: 100%;
-    background: var(--primary-light);
-    box-shadow: 0 0 10px var(--primary-light);
+    background: var(--primary);
+    box-shadow: 0 0 20px var(--primary);
     animation: progress-fill 2.5s ease-in-out forwards;
 }
 
