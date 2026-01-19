@@ -30,14 +30,17 @@
             <img src="lips__1_-removebg-preview.png" alt="Lucky365 Logo" class="header-logo">
             <h1 class="header-title">Lucky365</h1>
 
-            <button id="themeToggle" class="theme-toggle" aria-label="Toggle Theme">
-                <span class="toggle-track">
-                    <span class="toggle-indicator">
-                        <span class="check-icon">☀</span>
-                        <span class="check-icon">☾</span>
-                    </span>
-                </span>
-            </button>
+            <div class="theme-slider-container">
+                <div class="theme-labels">
+                    <span class="theme-label" data-theme="dark">Danger</span>
+                    <span class="theme-label" data-theme="light">Light</span>
+                    <span class="theme-label" data-theme="matrix">Matrix</span>
+                    <span class="theme-label" data-theme="cyber">Cyber</span>
+                </div>
+                <div class="slider-track" id="themeSlider">
+                    <div class="slider-handle"></div>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -52,7 +55,7 @@
                 <span class="tech-icon">🏆</span> Hackathon Top Teams
             </h1>
             <div class="subtitle-container">
-                <p class="bio-scan">LUCKY365:$ <span class="highlight-text" id="typing-text"></span><span
+                <p class="bio-scan"><span class="highlight-text">LUCKY365:$</span> <span id="typing-text"></span><span
                         class="cursor">_</span></p>
             </div>
         </div>

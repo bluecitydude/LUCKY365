@@ -67,12 +67,16 @@ const hackathonTeams = [
 ];
 
 // Theme Management - Multi-Theme Support
-const themeToggle = document.getElementById('themeToggle');
+const themeSlider = document.getElementById('themeSlider');
+const sliderHandle = document.querySelector('.slider-handle');
+const themeLabels = document.querySelectorAll('.theme-label');
+const sliderContainer = document.querySelector('.theme-slider-container');
 const body = document.body;
 
 // Theme Sequence
 const themes = ['dark', 'light', 'matrix', 'cyber'];
 let currentThemeIndex = 0;
+let isDragging = false;
 
 // Initialize Theme
 const savedTheme = localStorage.getItem('theme');
@@ -80,31 +84,94 @@ const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').ma
 
 if (savedTheme) {
     body.setAttribute('data-theme', savedTheme);
-    currentThemeIndex = themes.indexOf(savedTheme);
-    if (currentThemeIndex === -1) currentThemeIndex = 0; // Default if invalid
+    currentThemeIndex = Math.max(0, themes.indexOf(savedTheme));
 } else if (systemPrefersLight) {
     body.setAttribute('data-theme', 'light');
     currentThemeIndex = 1;
 }
 
-// Toggle Theme Event (Sequence)
-if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-        // Cycle to next theme
-        currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-        const newTheme = themes[currentThemeIndex];
+// Update Slider UI
+function updateSliderUI(index) {
+    const percentage = (index / (themes.length - 1)) * 100;
+    sliderHandle.style.left = `${percentage}%`;
 
-        body.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-
-        // Visual feedback for theme transition
-        themeToggle.animate([
-            { transform: 'rotate(0deg) scale(0.9)' },
-            { transform: 'rotate(180deg) scale(1.1)' },
-            { transform: 'rotate(360deg) scale(1)' }
-        ], { duration: 500, easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)' });
+    themeLabels.forEach((label, i) => {
+        if (i === index) label.classList.add('active');
+        else label.classList.remove('active');
     });
 }
+
+// Initial Slider Positioning
+updateSliderUI(currentThemeIndex);
+
+// Theme Change with Flash Effect
+function setTheme(index) {
+    if (index === currentThemeIndex) return;
+
+    currentThemeIndex = index;
+    const newTheme = themes[index];
+
+    // Add flash animation
+    body.classList.remove('theme-changing');
+    void body.offsetWidth; // Trigger reflow
+    body.classList.add('theme-changing');
+
+    // Update attributes
+    body.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateSliderUI(index);
+
+    // Remove class after animation
+    setTimeout(() => body.classList.remove('theme-changing'), 500);
+}
+
+// Interaction Handlers
+const handleInteraction = (clientX) => {
+    const rect = themeSlider.getBoundingClientRect();
+    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+    const index = Math.round((x / rect.width) * (themes.length - 1));
+    setTheme(index);
+};
+
+if (themeSlider && sliderContainer) {
+    document.addEventListener('mousedown', (e) => {
+        // Check if the click is within the unified container block
+        if (sliderContainer.contains(e.target)) {
+            isDragging = true;
+            handleInteraction(e.clientX);
+        }
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (isDragging) handleInteraction(e.clientX);
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+
+    // Touch Support for the whole block
+    sliderContainer.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        handleInteraction(e.touches[0].clientX);
+    }, { passive: true });
+
+    document.addEventListener('touchmove', (e) => {
+        if (isDragging) handleInteraction(e.touches[0].clientX);
+    }, { passive: true });
+
+    document.addEventListener('touchend', () => {
+        isDragging = false;
+    });
+}
+
+// Label Click Handling
+themeLabels.forEach((label, index) => {
+    label.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setTheme(index);
+    });
+});
 
 // Render team cards dynamically with tooltip on hover
 function renderTeams() {
@@ -181,12 +248,11 @@ function initTypingEffect() {
     if (!typingText) return;
 
     const phrases = [
-        "Showcasing the next generation of digital innovation",
-        "Initializing Lucky365 Hackathon Module...",
-        "Loading top-tier student projects...",
-        "System optimal. Innovation status: 100%.",
-        "Analyzing code... Compilation successful.",
-        "Welcome to the future of technology."
+        "Initializing hackathon_module...",
+        "Loading project_data.db...",
+        "Status: System Optimal",
+        "Connection: Secure",
+        "Access: Authorized"
     ];
 
     let phraseIndex = 0;
@@ -280,17 +346,6 @@ function initCursor() {
             body.classList.remove('hovering');
         });
 
-        // Add pop animation on click
-        el.addEventListener('click', function () {
-            this.classList.remove('click-pop');
-            void this.offsetWidth; // Trigger reflow
-            this.classList.add('click-pop');
-
-            // Remove class after animation
-            setTimeout(() => {
-                this.classList.remove('click-pop');
-            }, 300);
-        });
     });
 
     // Click Ripple Effect
