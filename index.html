@@ -16,12 +16,26 @@
 
 <body>
 
-    <!-- Tech Splash Screen -->
+    <!-- Custom 3D Splash Screen -->
     <div id="splash-screen">
-        <video id="splash-video" autoplay muted playsinline>
-            <source src="Splash_Screen.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <div class="particles-container" id="splash-particles"></div>
+        <div class="splash-3d-scene">
+            <div class="cyber-core" id="cyber-core">
+                <div class="core-face front"></div>
+                <div class="core-face back"></div>
+                <div class="core-face left"></div>
+                <div class="core-face right"></div>
+                <div class="core-face top"></div>
+                <div class="core-face bottom"></div>
+                <div class="core-inner"></div>
+            </div>
+        </div>
+        <div class="splash-branding">
+            <img src="lips__1_-removebg-preview.png" alt="Logo" class="splash-logo-reveal">
+            <div class="splash-loader">
+                <div class="loader-bar"></div>
+            </div>
+        </div>
     </div>
 
     <!-- Navigation Header with Logo -->

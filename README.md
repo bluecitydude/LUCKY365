@@ -8,24 +8,27 @@ A premium, highly interactive web application showcasing the innovative winning 
 
 ## ✨ Premium Features
 
-### 🎨 Advanced Multi-Theme System
+### 🎮 Advanced Multi-Theme System
 Experience the application in four distinct, atmospheric aesthetics:
 - **Danger (Default):** High-stakes cyber security aesthetic with deep reds and digital patterns.
 - **Light (Clean Room):** A high-contrast "breached" light mode for maximum readability.
 - **Matrix (Digital Rain):** Classic neon-green digital rain terminal vibe.
 - **Cyber (Future Blue):** Sleek, futuristic blue/cyan interface with modern sans-serif typography.
 
-### 🎛️ Dynamic Theme Slider
-No more simple toggles. Our **4-Step Multi-Theme Slider** allows for precise control:
-- **Drag & Click:** Smoothly slide the indicator or click the theme labels.
-- **Visual Feedback:** A subtle "tech-flash" animation confirms every theme transition.
-- **Persistent Selection:** Automatically remembers your preferred theme via LocalStorage.
+### 🎥 Immersive 3D Custom Splash Screen
+- **Hand-Coded 3D Core:** A perspective-aware, rotating 3D geometric cube built with CSS transforms.
+- **Binary Particle Stream:** A dynamic JS-driven engine generating hundreds of binary fragments moving in 3D space.
+- **Cinematic Reveal:** Orchestrated animation sequence with high-tech loader and brand reveal.
+
+### 📐 Fluid Typography & Responsiveness
+- **Clamp Scaling:** Every font on the page scales fluidly between mobile and 4K displays using `clamp()`.
+- **Landscape Optimization:** Specialized layouts for rotated mobile devices to ensure a perfect fit.
+- **Mobile Navigation:** High-tech animated hamburger menu for seamless theme management on small screens.
 
 ### 🎭 Visual & Interactive Polish
-- **Video Splash Screen:** An immersive, responsive video introduction that sets the professional tone.
-- **Intelligent Logo:** The logo dynamically color-shifts with the theme but recovers its original identity on hover with a smooth glow.
-- **Tech-Flare Heading:** A unique scanning animation on the main heading that breathes life into the page.
-- **Glitch Effects:** Authentic "cyber-danger" glitch animations on core UI elements.
+- **3D Wave Heading:** Main title features realistic depth shadows and a holographic signal-wave animation.
+- **Brand-Centric Background:** A pulsing, high-fidelity brand logo background that replaces static assets.
+- **Multi-Theme Slider:** Integrated 4-step interactive module with smooth dragging and visual flash feedback.
 
 ---
 
@@ -45,14 +48,14 @@ Then visit `http://localhost:8000`.
 ## 🛠️ Technical Implementation
 
 ### Core Technologies
-- **Vanilla HTML5/CSS3:** 100% dependency-free, high-performance code.
-- **ES6+ JavaScript:** Advanced DOM manipulation and theme management.
-- **CSS Variable Architecture:** Centralized design tokens for instantaneous theme switching.
+- **Vanilla HTML5 / CSS3:** 100% dependency-free, utilizing advanced 3D transforms and filters.
+- **ES6+ JavaScript:** Custom particle engines, 3D math, and reactive theme management.
+- **CSS Architecture:** Sophisticated variable-driven design system with centralized tokens.
 
 ### Performance & Optimization
-- **Zero Frameworks:** Minimal overhead, ultra-fast load times.
-- **Responsive Geometry:** Fully fluid layouts for Mobile, Tablet, and Desktop.
-- **GPU Accelerated:** CSS animations optimized for 60+ FPS.
+- **Zero Frameworks:** Minimal overhead, lightning-fast load times.
+- **GPU Accelerated:** Optimized animations targeting consistent 60+ FPS.
+- **Vector Assets:** Extensive use of SVG icons for crisp visuals at any scale.
 
 ---
 
@@ -61,10 +64,9 @@ Then visit `http://localhost:8000`.
 ```
 Lucky365/
 ├── index.html        # Clean, semantic structure & metadata
-├── styles.css       # Design system, themes & animations
-├── script.js        # Logic for teams, themes & interactions
-├── Splash_Screen.mp4 # Immersive video introduction
-└── lips__1-*.png    # Core brand assets
+├── styles.css        # Design system, 3D animations & themes
+├── script.js         # 3D Particle engine & interactive logic
+└── lips__1-*.png     # Core brand assets
 ```
 
 ---

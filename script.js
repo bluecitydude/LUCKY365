@@ -254,24 +254,74 @@ document.addEventListener('DOMContentLoaded', () => {
     initTypingEffect();
 });
 
-// Tech Splash Screen Logic
+// Custom 3D Splash Screen Logic
 function initSplash() {
     const splash = document.getElementById('splash-screen');
+    const particleContainer = document.getElementById('splash-particles');
     const body = document.body;
 
-    // Disable scrolling
+    if (!splash || !particleContainer) return;
+
+    // Lock scrolling during splash
     body.style.overflow = 'hidden';
 
-    // Wait for animation
+    // 1. Generate Binary Particle Stream
+    const particleCount = 120;
+    for (let i = 0; i < particleCount; i++) {
+        createParticle(particleContainer);
+    }
+
+    // 2. Splash Sequence Timing
+    // Reveal Branding
+    setTimeout(() => {
+        const branding = document.querySelector('.splash-branding');
+        if (branding) branding.style.opacity = '1';
+    }, 500);
+
+    // End Sequence and transition to main site
     setTimeout(() => {
         splash.classList.add('fade-out');
-        body.style.overflow = ''; // Enable scrolling
+        body.style.overflow = ''; // Unlock scrolling
 
-        // Remove from DOM after fade out
+        // Remove splash from DOM after transition
         setTimeout(() => {
-            splash.style.display = 'none';
-        }, 500);
-    }, 2800); // Wait slightly longer than animation (2.5s)
+            splash.remove();
+        }, 800);
+    }, 3800); // Cinematic duration (3.8s)
+}
+
+function createParticle(container) {
+    const particle = document.createElement('div');
+    particle.className = 'splash-particle';
+    particle.textContent = Math.random() > 0.5 ? '1' : '0';
+
+    // Randomized Start Position
+    const startX = Math.random() * 100;
+    const startY = Math.random() * 100;
+
+    // Randomized 3D Movement Path
+    const duration = 2 + Math.random() * 3;
+    const delay = Math.random() * 2;
+    const depth = -500 + Math.random() * 1000;
+
+    particle.style.left = `${startX}%`;
+    particle.style.top = `${startY}%`;
+    particle.style.transform = `translateZ(${depth}px)`;
+
+    // Use JS animation for fine-grained control over 3D particles
+    particle.animate([
+        { opacity: 0, transform: `translateZ(${depth}px) scale(0.5)` },
+        { opacity: 0.8, transform: `translateZ(${depth + 200}px) scale(1)`, offset: 0.2 },
+        { opacity: 0.8, transform: `translateZ(${depth + 800}px) scale(1.5)`, offset: 0.8 },
+        { opacity: 0, transform: `translateZ(${depth + 1000}px) scale(2)` }
+    ], {
+        duration: duration * 1000,
+        delay: delay * 1000,
+        iterations: Infinity,
+        easing: 'ease-in-out'
+    });
+
+    container.appendChild(particle);
 }
 
 // Typing Text Animation
