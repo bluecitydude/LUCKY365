@@ -63,6 +63,14 @@ const hackathonTeams = [
         description: "An advanced platform dedicated to skill development and professional growth through interactive learning.",
         icon: `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`, // Hammer/Wrench (Forging/Skill)
         link: "https://skll.lovable.app/"
+    },
+    {
+        teamName: "Fusion Force",
+        members: "Harshita Jangid, Dev Borana, Jiten Gurnani, Aaryan Gaur",
+        projectName: "Smart guide ai",
+        description: "Intelligent AI-powered guide system designed to simplify complex navigation and instructions.",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>`, // Shield/Guide
+        link: "https://guidefox-ai.lovable.app"
     }
 ];
 
@@ -71,6 +79,7 @@ const themeSlider = document.getElementById('themeSlider');
 const sliderHandle = document.querySelector('.slider-handle');
 const themeLabels = document.querySelectorAll('.theme-label');
 const sliderContainer = document.querySelector('.theme-slider-container');
+const menuToggle = document.getElementById('menuToggle');
 const body = document.body;
 
 // Theme Sequence
@@ -165,11 +174,34 @@ if (themeSlider && sliderContainer) {
     });
 }
 
+// Hamburger Menu Toggle
+if (menuToggle && sliderContainer) {
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menuToggle.classList.toggle('active');
+        sliderContainer.classList.toggle('active');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!sliderContainer.contains(e.target) && !menuToggle.contains(e.target)) {
+            menuToggle.classList.remove('active');
+            sliderContainer.classList.remove('active');
+        }
+    });
+}
+
 // Label Click Handling
 themeLabels.forEach((label, index) => {
     label.addEventListener('click', (e) => {
         e.stopPropagation();
         setTheme(index);
+
+        // Auto-close menu on mobile after selection
+        if (window.innerWidth <= 1024) {
+            menuToggle.classList.remove('active');
+            sliderContainer.classList.remove('active');
+        }
     });
 });
 

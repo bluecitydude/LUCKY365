@@ -40,6 +40,7 @@
     /* Pure White for max contrast */
     --text-dim: #fca5a5;
     /* Lighter Red for readability on black */
+    --label-dim: #888;
     /* Dark Red Text for dim */
     --header-text: #ffffff;
     --footer-bg: #110000;
@@ -67,6 +68,7 @@
     --banner-bg: rgba(255, 200, 200, 0.9);
     --accent-light: #b91c1c;
     --skull-opacity: 0.15;
+    --label-dim: #991b1b;
     --logo-filter: brightness(0.8) contrast(1.2);
 }
 
@@ -310,15 +312,51 @@ body::before {
 
 .header-title {
     font-family: var(--font-heading);
-    font-size: 1.8rem;
+    font-size: 2.4rem;
+    /* Enlarged from 1.8rem */
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 5px;
+    letter-spacing: 6px;
     color: var(--primary);
     text-shadow: 2px 2px 0px #000, 0 0 10px var(--primary);
     margin: 0;
     margin-right: auto;
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Menu Toggle Button */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary);
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 5px var(--primary-glow);
+}
+
+.menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
 }
 
 /* Multi-Theme Slider Block */
@@ -353,13 +391,13 @@ body::before {
 .theme-label {
     font-size: 11px;
     font-family: var(--font-heading);
-    color: #888;
+    color: var(--label-dim, #888);
     /* Neutral static color */
     text-transform: uppercase;
     letter-spacing: 1.5px;
     cursor: pointer;
     transition: all 0.3s ease;
-    opacity: 0.6;
+    opacity: 0.7;
 }
 
 .theme-label:hover {
@@ -602,15 +640,47 @@ header {
     }
 
     .header-content {
-        gap: 1.5rem;
-        justify-content: center;
-        padding: 1rem;
+        gap: 1rem;
+        justify-content: space-between;
+        padding: 1rem 1.5rem;
+    }
+
+    .header-title {
+        font-size: 1.8rem;
+        /* Adjusted enlarged size for tablet */
+        margin-right: 0;
+    }
+
+    .menu-toggle {
+        display: flex;
+        /* Show on mobile/tablet */
     }
 
     .theme-slider-container {
-        margin-left: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        margin: 0;
         min-width: 100%;
-        max-width: 320px;
+        max-width: none;
+        background: rgba(var(--primary-rgb), 0.05);
+        backdrop-filter: blur(20px);
+        border-top: 1px solid var(--border-color);
+        border-bottom: 2px solid var(--primary);
+        padding: 20px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        border-radius: 0;
+    }
+
+    .theme-slider-container.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
     }
 
     .card {
@@ -667,25 +737,22 @@ header {
         padding: 1rem;
     }
 
+    .header-content {
+        gap: 0.5rem;
+        padding: 0.8rem 1rem;
+    }
+
+    .header-title {
+        font-size: 1.5rem;
+        /* Enlarged for mobile */
+    }
+
     .header-logo {
         height: 35px;
     }
 
-    .header-title {
-        font-size: 1.1rem;
-    }
-
-    .header-content {
-        gap: 1rem;
-        padding: 1rem;
-        justify-content: center;
-    }
-
     .theme-slider-container {
-        margin-left: 0;
-        min-width: 100%;
-        padding: 10px 15px;
-        gap: 8px;
+        padding: 25px 20px;
     }
 
     .slider-track {
@@ -744,6 +811,78 @@ header {
         -webkit-line-clamp: 5;
         line-clamp: 5;
         margin-bottom: 0.3rem;
+    }
+}
+
+/* Landscape Mode Refinements - Fix for "buggy" slider and layout */
+@media (max-width: 991px) and (orientation: landscape) {
+    header {
+        padding: 1rem 1rem 0.5rem !important;
+    }
+
+    .header-content {
+        padding: 0.5rem 1.5rem !important;
+        height: auto !important;
+    }
+
+    .header-title {
+        font-size: 1.6rem !important;
+        letter-spacing: 4px !important;
+    }
+
+    .header-logo {
+        height: 30px !important;
+    }
+
+    .glitch {
+        font-size: 2.2rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .subtitle-container {
+        min-height: 50px !important;
+        padding: 0.5rem 1.5rem !important;
+        max-width: 90% !important;
+    }
+
+    .bio-scan {
+        font-size: 0.8rem !important;
+    }
+
+    /* Slider specific landscape fix */
+    .theme-slider-container {
+        max-width: 450px !important;
+        left: 50% !important;
+        right: auto !important;
+        transform: translate(-50%, -10px) !important;
+        margin: 0 auto !important;
+        border-radius: 0 0 16px 16px !important;
+        padding: 12px 25px !important;
+        border: 1px solid var(--primary) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8) !important;
+        width: 85% !important;
+    }
+
+    .theme-slider-container.active {
+        transform: translate(-50%, 0) !important;
+    }
+
+    .theme-labels {
+        padding: 0 10px !important;
+    }
+
+    .theme-label {
+        font-size: 10px !important;
+    }
+
+    .slider-track {
+        height: 6px !important;
+        width: 100% !important;
+    }
+
+    .slider-handle {
+        width: 18px !important;
+        height: 18px !important;
     }
 }
 
