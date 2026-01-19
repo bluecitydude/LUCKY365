@@ -1279,6 +1279,17 @@ footer::before {
     line-height: 1.8;
 }
 
+.footer-info a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-info a:hover {
+    text-shadow: 0 0 10px var(--primary-glow);
+    transform: translateX(5px);
+}
+
 .footer-info strong {
     color: var(--accent-light);
 }
