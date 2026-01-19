@@ -84,19 +84,19 @@ const body = document.body;
 
 // Theme Sequence
 const themes = ['dark', 'light', 'matrix', 'cyber'];
-let currentThemeIndex = 0;
+let currentThemeIndex = 2; // Default to Matrix (index 2)
 let isDragging = false;
 
 // Initialize Theme
 const savedTheme = localStorage.getItem('theme');
-const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
 
 if (savedTheme) {
     body.setAttribute('data-theme', savedTheme);
     currentThemeIndex = Math.max(0, themes.indexOf(savedTheme));
-} else if (systemPrefersLight) {
-    body.setAttribute('data-theme', 'light');
-    currentThemeIndex = 1;
+} else {
+    // Default to Matrix (index 2) for first-time users
+    body.setAttribute('data-theme', 'matrix');
+    currentThemeIndex = 2;
 }
 
 // Update Slider UI
