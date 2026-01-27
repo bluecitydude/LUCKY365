@@ -5,33 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hackathon Top Teams | Lucky Institute</title>
-    <link rel="icon" type="image/png" href="lips__1_-removebg-preview.png">
+    <link rel="icon" type="image/png" href="flat_logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <!-- Custom 3D Splash Screen -->
+    <!-- Minimal Splash Screen -->
     <div id="splash-screen">
-        <div class="particles-container" id="splash-particles"></div>
-        <div class="splash-3d-scene">
-            <div class="cyber-core" id="cyber-core">
-                <div class="core-face front"></div>
-                <div class="core-face back"></div>
-                <div class="core-face left"></div>
-                <div class="core-face right"></div>
-                <div class="core-face top"></div>
-                <div class="core-face bottom"></div>
-                <div class="core-inner"></div>
-            </div>
-        </div>
         <div class="splash-branding">
-            <img src="lips__1_-removebg-preview.png" alt="Logo" class="splash-logo-reveal">
+            <img src="flat_logo.png" alt="Lucky365 Logo" class="splash-logo-reveal">
             <div class="splash-loader">
                 <div class="loader-bar"></div>
             </div>
@@ -41,25 +27,19 @@
     <!-- Navigation Header with Logo -->
     <nav class="nav-header">
         <div class="header-content">
-            <img src="lips__1_-removebg-preview.png" alt="Lucky365 Logo" class="header-logo">
-            <h1 class="header-title">Lucky365</h1>
+            <div class="logo-wrapper">
+                <img src="flat_logo.png" alt="Lucky365 Logo" class="header-logo">
+                <span class="brand-text">Lucky 365</span>
+            </div>
 
-            <button id="menuToggle" class="menu-toggle" aria-label="Toggle Menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
 
-            <div class="theme-slider-container">
-                <div class="theme-labels">
-                    <span class="theme-label" data-theme="dark">Danger</span>
-                    <span class="theme-label" data-theme="light">Light</span>
-                    <span class="theme-label" data-theme="matrix">Matrix</span>
-                    <span class="theme-label" data-theme="cyber">Cyber</span>
-                </div>
-                <div class="slider-track" id="themeSlider">
-                    <div class="slider-handle"></div>
-                </div>
+
+            <div class="theme-toggle-wrapper">
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle Light/Dark Mode">
+                    <span class="toggle-icon sun">☀️</span>
+                    <span class="toggle-icon moon">🌙</span>
+                    <div class="toggle-shifter"></div>
+                </button>
             </div>
         </div>
     </nav>
@@ -71,12 +51,13 @@
 
     <header>
         <div class="header-wrapper">
-            <h1 class="glitch" data-text="🏆 Hackathon Top Teams">
-                <span class="tech-icon">🏆</span> Hackathon Top Teams
-            </h1>
+            <h1 class="glitch">Hackathon Top Teams</h1>
             <div class="subtitle-container">
-                <p class="bio-scan"><span class="highlight-text">LUCKY365:$</span> <span id="typing-text"></span><span
-                        class="cursor">_</span></p>
+                <p class="bio-scan">
+                    <span class="highlight-text">LUCKY365:$</span>
+                    <span id="typing-text"></span>
+                    <span class="cursor">_</span>
+                </p>
             </div>
         </div>
     </header>
@@ -87,23 +68,18 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
-
-    <!-- Footer with Developer Credits -->
+    <!-- Minimal Professional Footer -->
     <footer>
         <div class="footer-content">
-            <!-- About Section -->
             <div class="footer-section">
-                <h3>📱 About</h3>
-                <div class="footer-info">
-                    Lucky365 is a dynamic showcase platform for student-led hackathon projects, celebrating innovation,
-                    creativity, and technical excellence in technology development.
-                </div>
+                <h3>About</h3>
+                <p class="footer-info">
+                    Lucky365 showcases student innovation and technical excellence through curated hackathon projects.
+                </p>
             </div>
 
-            <!-- Developers Section -->
             <div class="footer-section">
-                <h3>👨‍💻 Platform Team</h3>
+                <h3>Platform Team</h3>
                 <ul class="developers-list">
                     <li><a href="https://www.linkedin.com/in/khush-soni825/" target="_blank">Khush Soni</a></li>
                     <li><a href="https://www.linkedin.com/in/nitindaswani" target="_blank">Nitin Daswani</a></li>
@@ -112,27 +88,25 @@
                 </ul>
             </div>
 
-            <!-- Institution Section -->
             <div class="footer-section">
-                <h3>🎓 Institution</h3>
+                <h3>Institution</h3>
                 <div class="footer-info">
                     <a href="https://luckyinstitute.org/" target="_blank">
-                        <strong>Lucky Institute of Professional Studies</strong><br>
+                        <strong>Lucky Institute of Professional Studies</strong>
                     </a>
-                    Fostering innovation and excellence in technology education
+                    <br>Fostering the next generation of tech leaders.
                 </div>
             </div>
         </div>
 
-        <!-- Footer Bottom -->
         <div class="footer-bottom">
-            <p>&copy; 2026 Lucky365 Hackathon Showcase. Powered by student innovation.</p>
+            <p>&copy; 2026 Lucky365. All rights reserved.</p>
         </div>
     </footer>
-    <!-- Custom Cursor Elements -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-    <div class="click-effects-container"></div>
+
+    <div class="cyber-overlay"></div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>

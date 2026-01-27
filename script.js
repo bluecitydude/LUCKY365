@@ -74,147 +74,137 @@ const hackathonTeams = [
     }
 ];
 
-// Theme Management - Multi-Theme Support
-const themeSlider = document.getElementById('themeSlider');
-const sliderHandle = document.querySelector('.slider-handle');
-const themeLabels = document.querySelectorAll('.theme-label');
-const sliderContainer = document.querySelector('.theme-slider-container');
-const menuToggle = document.getElementById('menuToggle');
+// Theme Management - Simple Light/Dark Toggle
+const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 
-// Theme Sequence
-const themes = ['dark', 'light', 'matrix', 'cyber'];
-let currentThemeIndex = 2; // Default to Matrix (index 2)
-let isDragging = false;
-
 // Initialize Theme
-const savedTheme = localStorage.getItem('theme');
+const savedTheme = localStorage.getItem('theme') || 'dark';
+body.setAttribute('data-theme', savedTheme);
 
-if (savedTheme) {
-    body.setAttribute('data-theme', savedTheme);
-    currentThemeIndex = Math.max(0, themes.indexOf(savedTheme));
-} else {
-    // Default to Matrix (index 2) for first-time users
-    body.setAttribute('data-theme', 'matrix');
-    currentThemeIndex = 2;
-}
+// Theme Toggle Handler
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
 
-// Update Slider UI
-function updateSliderUI(index) {
-    const percentage = (index / (themes.length - 1)) * 100;
-    sliderHandle.style.left = `${percentage}%`;
+        body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
 
-    themeLabels.forEach((label, i) => {
-        if (i === index) label.classList.add('active');
-        else label.classList.remove('active');
+        // Add flash animation
+        body.classList.remove('theme-changing');
+        void body.offsetWidth; // Trigger reflow
+        body.classList.add('theme-changing');
+
+        setTimeout(() => body.classList.remove('theme-changing'), 400);
     });
 }
 
-// Initial Slider Positioning
-updateSliderUI(currentThemeIndex);
-
-// Theme Change with Flash Effect
-function setTheme(index) {
-    if (index === currentThemeIndex) return;
-
-    currentThemeIndex = index;
-    const newTheme = themes[index];
-
-    // Add flash animation
-    body.classList.remove('theme-changing');
-    void body.offsetWidth; // Trigger reflow
-    body.classList.add('theme-changing');
-
-    // Update attributes
-    body.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateSliderUI(index);
-
-    // Remove class after animation
-    setTimeout(() => body.classList.remove('theme-changing'), 500);
-}
-
-// Interaction Handlers
-const handleInteraction = (clientX) => {
-    const rect = themeSlider.getBoundingClientRect();
-    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
-    const index = Math.round((x / rect.width) * (themes.length - 1));
-    setTheme(index);
-};
-
-if (themeSlider && sliderContainer) {
-    document.addEventListener('mousedown', (e) => {
-        // Check if the click is within the unified container block
-        if (sliderContainer.contains(e.target)) {
-            isDragging = true;
-            handleInteraction(e.clientX);
-        }
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (isDragging) handleInteraction(e.clientX);
-    });
-
-    document.addEventListener('mouseup', () => {
-        isDragging = false;
-    });
-
-    // Touch Support for the whole block
-    sliderContainer.addEventListener('touchstart', (e) => {
-        isDragging = true;
-        handleInteraction(e.touches[0].clientX);
-    }, { passive: true });
-
-    document.addEventListener('touchmove', (e) => {
-        if (isDragging) handleInteraction(e.touches[0].clientX);
-    }, { passive: true });
-
-    document.addEventListener('touchend', () => {
-        isDragging = false;
-    });
-}
-
-// Hamburger Menu Toggle
-if (menuToggle && sliderContainer) {
-    menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        menuToggle.classList.toggle('active');
-        sliderContainer.classList.toggle('active');
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!sliderContainer.contains(e.target) && !menuToggle.contains(e.target)) {
-            menuToggle.classList.remove('active');
-            sliderContainer.classList.remove('active');
-        }
-    });
-}
-
-// Label Click Handling
-themeLabels.forEach((label, index) => {
-    label.addEventListener('click', (e) => {
-        e.stopPropagation();
-        setTheme(index);
-
-        // Auto-close menu on mobile after selection
-        if (window.innerWidth <= 1024) {
-            menuToggle.classList.remove('active');
-            sliderContainer.classList.remove('active');
-        }
-    });
+// Initialize on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+    initSplash();
+    renderTeams();
+    initTypingEffect();
+    initParallaxEffect();
+    initMouseTrackingGlow();
+    initScrollAnimations();
 });
 
-// Render team cards dynamically with tooltip on hover
+// Parallax 3D effect on mouse move
+function initParallaxEffect() {
+    const cards = document.querySelectorAll('.card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+        });
+    });
+}
+
+// Mouse tracking glow effect
+function initMouseTrackingGlow() {
+    const container = document.querySelector('.container');
+    if (!container) return;
+    
+    let mouseX = 0;
+    let mouseY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+    
+    // Create a subtle glow that follows the cursor
+    const glow = document.createElement('div');
+    glow.style.cssText = `
+        position: fixed;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(50, 130, 184, 0.1) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 0;
+        top: -150px;
+        left: -150px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    `;
+    document.body.appendChild(glow);
+    
+    document.addEventListener('mousemove', (e) => {
+        glow.style.top = (e.clientY - 150) + 'px';
+        glow.style.left = (e.clientX - 150) + 'px';
+        glow.style.opacity = '0.5';
+    });
+    
+    document.addEventListener('mouseleave', () => {
+        glow.style.opacity = '0';
+    });
+}
+
+// Scroll animations
+function initScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = `fadeInScale 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards`;
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '50px'
+    });
+    
+    document.querySelectorAll('.card').forEach(card => {
+        observer.observe(card);
+    });
+}
+
+// Render team cards dynamically
 function renderTeams() {
     const container = document.getElementById('teamContainer');
+    if (!container) return;
 
     hackathonTeams.forEach((team, index) => {
         const card = document.createElement('div');
         card.className = 'card';
         card.style.animationDelay = `${index * 100}ms`;
 
-        // Create card with project icon and name only
         card.innerHTML = `
             <div class="card-display">
                 <div class="card-icon">${team.icon}</div>
@@ -246,82 +236,23 @@ function renderTeams() {
     });
 }
 
-// Initialize on DOM ready
-document.addEventListener('DOMContentLoaded', () => {
-    initSplash(); // Run Splash Screen first
-    renderTeams();
-    initCursor();
-    initTypingEffect();
-});
-
-// Custom 3D Splash Screen Logic
+// Minimal Splash Screen Logic
 function initSplash() {
     const splash = document.getElementById('splash-screen');
-    const particleContainer = document.getElementById('splash-particles');
     const body = document.body;
 
-    if (!splash || !particleContainer) return;
+    if (!splash) return;
 
-    // Lock scrolling during splash
     body.style.overflow = 'hidden';
 
-    // 1. Generate Binary Particle Stream
-    const particleCount = 120;
-    for (let i = 0; i < particleCount; i++) {
-        createParticle(particleContainer);
-    }
-
-    // 2. Splash Sequence Timing
-    // Reveal Branding
-    setTimeout(() => {
-        const branding = document.querySelector('.splash-branding');
-        if (branding) branding.style.opacity = '1';
-    }, 500);
-
-    // End Sequence and transition to main site
     setTimeout(() => {
         splash.classList.add('fade-out');
-        body.style.overflow = ''; // Unlock scrolling
+        body.style.overflow = '';
 
-        // Remove splash from DOM after transition
         setTimeout(() => {
             splash.remove();
-        }, 800);
-    }, 3800); // Cinematic duration (3.8s)
-}
-
-function createParticle(container) {
-    const particle = document.createElement('div');
-    particle.className = 'splash-particle';
-    particle.textContent = Math.random() > 0.5 ? '1' : '0';
-
-    // Randomized Start Position
-    const startX = Math.random() * 100;
-    const startY = Math.random() * 100;
-
-    // Randomized 3D Movement Path
-    const duration = 2 + Math.random() * 3;
-    const delay = Math.random() * 2;
-    const depth = -500 + Math.random() * 1000;
-
-    particle.style.left = `${startX}%`;
-    particle.style.top = `${startY}%`;
-    particle.style.transform = `translateZ(${depth}px)`;
-
-    // Use JS animation for fine-grained control over 3D particles
-    particle.animate([
-        { opacity: 0, transform: `translateZ(${depth}px) scale(0.5)` },
-        { opacity: 0.8, transform: `translateZ(${depth + 200}px) scale(1)`, offset: 0.2 },
-        { opacity: 0.8, transform: `translateZ(${depth + 800}px) scale(1.5)`, offset: 0.8 },
-        { opacity: 0, transform: `translateZ(${depth + 1000}px) scale(2)` }
-    ], {
-        duration: duration * 1000,
-        delay: delay * 1000,
-        iterations: Infinity,
-        easing: 'ease-in-out'
-    });
-
-    container.appendChild(particle);
+        }, 1000);
+    }, 2000);
 }
 
 // Typing Text Animation
@@ -330,11 +261,10 @@ function initTypingEffect() {
     if (!typingText) return;
 
     const phrases = [
-        "Initializing hackathon_module...",
-        "Loading project_data.db...",
-        "Status: System Optimal",
-        "Connection: Secure",
-        "Access: Authorized"
+        "Initializing platform...",
+        "System: Optimal",
+        "Mode: Professional",
+        "Ready to innovate."
     ];
 
     let phraseIndex = 0;
@@ -348,100 +278,24 @@ function initTypingEffect() {
         if (isDeleting) {
             typingText.textContent = currentPhrase.substring(0, charIndex - 1);
             charIndex--;
-            typeSpeed = 30; // Faster deleting
+            typeSpeed = 30;
         } else {
             typingText.textContent = currentPhrase.substring(0, charIndex + 1);
             charIndex++;
-            typeSpeed = 80; // Normal typing
+            typeSpeed = 80;
         }
 
         if (!isDeleting && charIndex === currentPhrase.length) {
-            // Finished typing phrase
             isDeleting = true;
-            typeSpeed = 2000; // Pause at end to read
+            typeSpeed = 2000;
         } else if (isDeleting && charIndex === 0) {
-            // Finished deleting
             isDeleting = false;
             phraseIndex = (phraseIndex + 1) % phrases.length;
-            typeSpeed = 500; // Pause before new phrase
+            typeSpeed = 500;
         }
 
         setTimeout(type, typeSpeed);
     }
 
-    // Start the typing loop
     type();
-}
-
-// Custom Cursor Logic
-function initCursor() {
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
-    const body = document.body;
-
-    // Move cursor
-    window.addEventListener('mousemove', (e) => {
-        const posX = e.clientX;
-        const posY = e.clientY;
-
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
-
-        // Slight delay for trailing effect
-        cursorOutline.animate({
-            left: `${posX}px`,
-            top: `${posY}px`
-        }, { duration: 500, fill: 'forwards' });
-    });
-
-    // Global Click Animation (Animate ANYTHING clicked)
-    window.addEventListener('mousedown', (e) => {
-        const target = e.target;
-
-        // Don't animate the body, html or cursor itself
-        if (target !== document.body &&
-            target !== document.documentElement &&
-            !target.classList.contains('cursor-dot') &&
-            !target.classList.contains('cursor-outline')) {
-
-            // Apply a quick scale pop
-            target.animate([
-                { transform: 'scale(1)' },
-                { transform: 'scale(0.95)' },
-                { transform: 'scale(1)' }
-            ], {
-                duration: 200,
-                easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
-            });
-        }
-    });
-
-    // Hover Effects for Interactive Elements
-    const interactiveElements = document.querySelectorAll('a, button, .card, input, textarea');
-
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            body.classList.add('hovering');
-        });
-
-        el.addEventListener('mouseleave', () => {
-            body.classList.remove('hovering');
-        });
-
-    });
-
-    // Click Ripple Effect
-    window.addEventListener('click', (e) => {
-        const ripple = document.createElement('div');
-        ripple.className = 'click-ripple';
-        ripple.style.left = `${e.clientX}px`;
-        ripple.style.top = `${e.clientY}px`;
-
-        document.querySelector('.click-effects-container').appendChild(ripple);
-
-        // Remove ripple after animation
-        ripple.addEventListener('animationend', () => {
-            ripple.remove();
-        });
-    });
 }
