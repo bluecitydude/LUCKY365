@@ -31,6 +31,14 @@ const hackathonTeams = [
         description: "Smart AI-powered study planner that optimizes your learning schedule for maximum efficiency.",
         icon: `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>`,
         link: "https://devdominators-ai-study-planner.netlify.app"
+    },
+    {
+        teamName: "Routine Risers",
+        members: "Yagya Kansara (Leader), Nishant Vaishnav, Ashish Rankawat, Sahil Jangid",
+        projectName: "Habit Building AI Coach",
+        description: "AI-powered personal coach for building healthy habits and boosting daily productivity.",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>`,
+        link: "https://routine-risers-habit-builder.netlify.app/"
     }
 ];
 
